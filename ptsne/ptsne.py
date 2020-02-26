@@ -148,8 +148,12 @@ class ParametricTSNE(nn.Module):
             learning_rate=0.01):
         if verbose:
             print('Calculating PCA')
-        pca = torch.tensor(PCA(n_components=2).fit_transform(training_data), dtype=training_data.dtype)
-        
+
+        if type(training_data) is torch.Tensor:
+            pca = torch.tensor(PCA(n_components=2).fit_transform(training_data.detach().cpu().numpy()))
+        else:
+            pca = torch.tensor(PCA(n_components=2).fit_transform(training_data))
+
         dataset = torch.utils.data.TensorDataset(training_data, pca)
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
         optim = torch.optim.Adam(self.parameters(), lr=learning_rate)
@@ -208,7 +212,7 @@ class ParametricTSNE(nn.Module):
             self.pretrain(training_data, epochs=5, verbose=verbose, batch_size=batch_size)
         
         if self.p_ij is None:
-            self.p_ij = p_ij_sym(training_data.numpy(), self.perplexity, verbose=verbose).toarray()
+            self.p_ij = p_ij_sym(training_data.detach().cpu().numpy(), self.perplexity, verbose=verbose).toarray()
             
         dataset = torch.utils.data.TensorDataset(training_data, torch.arange(training_data.shape[0]))
         dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)

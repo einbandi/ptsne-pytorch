@@ -91,3 +91,6 @@ target/
 # Exported data + images
 *.csv
 *.png
+
+# Exported models
+models/
