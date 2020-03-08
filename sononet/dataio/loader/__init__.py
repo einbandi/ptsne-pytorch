@@ -1,7 +1,7 @@
 import json
 
-from dataio.loader.test_dataset import TestDataset
-from dataio.loader.us_dataset import UltraSoundDataset
+from sononet.dataio.loader.test_dataset import TestDataset
+from sononet.dataio.loader.us_dataset import UltraSoundDataset
 
 
 def get_dataset(name):

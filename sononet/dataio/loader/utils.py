@@ -1,7 +1,7 @@
 import nibabel as nib
 import numpy as np
 import os
-from utils.util import mkdir
+from sononet.utils.util import mkdir
 
 def is_image_file(filename):
     return any(filename.endswith(extension) for extension in [".nii.gz"])
