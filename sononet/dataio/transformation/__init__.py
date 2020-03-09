@@ -1,5 +1,5 @@
 import json
-from dataio.transformation.transforms import Transformations
+from sononet.dataio.transformation.transforms import Transformations
 
 
 def get_dataset_transformation(name, opts=None):

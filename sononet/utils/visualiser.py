@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import ntpath
 import time
-from utils import util, html
+from sononet.utils import util, html
 
 # Use the following comment to launch a visdom server
 # python -m visdom.server
