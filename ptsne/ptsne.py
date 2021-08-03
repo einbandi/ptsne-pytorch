@@ -37,7 +37,7 @@ def p_ij_sym(x, perp, verbose=False):
     k = min(num_pts - 1, int(3 * perp))
     if verbose:
         print('Indexing')
-    index = NNDescent(x)
+    index = NNDescent(x, n_neighbors=k)
     neighbors = np.empty((num_pts, k-1), dtype=np.int)
     p_ij = np.empty((num_pts, k-1))
     for i, xi in enumerate(x):
